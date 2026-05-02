@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import type { ExportColumn } from "@/utils/export";
 
 interface ExportColumnBarProps {

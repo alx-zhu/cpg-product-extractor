@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 import { getFieldCitations, type ExtractedIngredientSpec, type IngredientSpecFieldKey } from "@/types/ingredientSpec";
 import { SPEC_FIELDS, getFieldLabel } from "@/config/fields";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 interface FieldEditorProps {
   spec: ExtractedIngredientSpec;

@@ -1,5 +1,4 @@
 import type { SpecDocument } from "@/types/ingredientSpec";
-import { simulateApiCall } from "./client";
 
 const DOCUMENTS_STORAGE_KEY = "cpg:documents";
 
@@ -13,7 +12,7 @@ const saveDocumentsToStorage = (documents: SpecDocument[]): void => {
 };
 
 export const fetchDocuments = async (): Promise<SpecDocument[]> => {
-  return simulateApiCall(getDocumentsFromStorage());
+  return getDocumentsFromStorage();
 };
 
 export const createDocument = async (
@@ -30,7 +29,7 @@ export const createDocument = async (
     type: "specification",
   };
   saveDocumentsToStorage([...documents, document]);
-  return simulateApiCall(document);
+  return document;
 };
 
 export const updateDocumentStatus = async (
@@ -42,10 +41,9 @@ export const updateDocumentStatus = async (
   saveDocumentsToStorage(updated);
   const result = updated.find((d) => d.id === documentId);
   if (!result) throw new Error(`Document ${documentId} not found`);
-  return simulateApiCall(result);
+  return result;
 };
 
 export const deleteDocument = async (documentId: string): Promise<void> => {
   saveDocumentsToStorage(getDocumentsFromStorage().filter((d) => d.id !== documentId));
-  return simulateApiCall(undefined);
 };

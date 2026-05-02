@@ -1,4 +1,4 @@
-import { supabase } from "@/api/supabase.client";
+import { supabase } from "@/clients/supabase";
 
 const STORAGE_BUCKET = "uploads";
 

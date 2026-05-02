@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import type { ExtractedIngredientSpec } from "@/types/ingredientSpec";
-import * as specsApi from "@/api/specs.api";
+import * as specsApi from "@/api/specs";
 
 export const specKeys = {
   all: ["specs"] as const,

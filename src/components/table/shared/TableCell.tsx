@@ -1,6 +1,6 @@
 import { flexRender, type Cell } from "@tanstack/react-table";
-import { cn } from "@/lib/utils";
-import { getColumnType, getColumnWidth } from "@/styles/tableLayout";
+import { cn } from "@/utils/cn";
+import { getColumnType, getColumnWidth } from "@/components/table/layout";
 import { cellVariants } from "./tableVariants";
 
 type ColumnVariant = "checkbox" | "expand" | "sourceAction" | "product_name" | "data";

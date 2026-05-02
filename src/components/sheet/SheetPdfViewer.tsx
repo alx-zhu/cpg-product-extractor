@@ -3,7 +3,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getFieldCitations, type ExtractedIngredientSpec, type IngredientSpecFieldKey } from "@/types/ingredientSpec";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import type { ReductoFieldValue } from "@/types/reducto";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;

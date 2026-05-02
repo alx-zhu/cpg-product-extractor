@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import * as documentsApi from "@/api/documents.api";
+import * as documentsApi from "@/api/documents";
 
 export const documentKeys = {
   all: ["documents"] as const,

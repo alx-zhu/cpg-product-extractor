@@ -10,7 +10,7 @@ import { useSidebarFilter } from "@/hooks/useSidebarFilter";
 import { DEFAULT_SORT, createSortComparator } from "@/components/table/shared/sorting";
 import type { SortConfig } from "@/components/table/shared/sorting";
 import type { ExtractedIngredientSpec, IngredientSpecFieldKey } from "@/types/ingredientSpec";
-import { getPdfUrl } from "@/utils/storage";
+import { getPdfUrl } from "@/api/storage";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";

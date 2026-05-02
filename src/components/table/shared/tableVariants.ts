@@ -1,5 +1,7 @@
 import { cva } from "class-variance-authority";
-import { hoverOverlay } from "@/styles/layers";
+
+const hoverOverlay =
+  "after:absolute after:inset-0 after:pointer-events-none after:transition-colors hover:after:bg-black/4";
 
 export const cellVariants = cva(
   "px-3 flex items-center border-r last:border-r-0 box-border group relative overflow-hidden",

@@ -7,7 +7,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 const PAGE_SIZE_OPTIONS = [10, 25, 50, 100] as const;
 

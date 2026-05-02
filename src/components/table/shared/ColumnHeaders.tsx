@@ -1,6 +1,6 @@
 import { flexRender, type HeaderGroup } from "@tanstack/react-table";
 import { ArrowUp, ArrowDown, ArrowUpDown } from "lucide-react";
-import { getColumnType, getColumnWidth } from "@/styles/tableLayout";
+import { getColumnType, getColumnWidth } from "@/components/table/layout";
 import { headerCellVariants } from "./tableVariants";
 import { type SortConfig, DEFAULT_SORT } from "./sorting";
 

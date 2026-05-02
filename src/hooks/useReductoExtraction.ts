@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
-import { getReductoClient } from "@/api/reducto.client";
-import type { ExtractionStage } from "@/api/reducto.client";
+import { getReductoClient } from "@/clients/reducto";
+import type { ExtractionStage } from "@/clients/reducto";
 import type { ExtractedIngredientSpec } from "@/types/ingredientSpec";
 
 interface ReductoExtractionParams {

@@ -14,7 +14,7 @@ import {
   SlidersHorizontal,
   X,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import { type SortConfig, SORT_OPTIONS } from "@/components/table/shared/sorting";
 
 interface TableToolbarProps {

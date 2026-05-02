@@ -2,7 +2,7 @@ import Reducto from "reductoai";
 import type { Upload } from "reductoai/resources/shared";
 import type { ReductoFieldValue } from "@/types/reducto";
 import type { ExtractedIngredientSpec, IngredientSpecFieldKey } from "@/types/ingredientSpec";
-import { getExtractionConfig } from "./reducto.prompts";
+import { getExtractionConfig } from "./prompts";
 
 export type ExtractionStage = "uploading" | "extracting";
 

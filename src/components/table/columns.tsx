@@ -1,7 +1,7 @@
 import { createColumnHelper } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { AlertTriangle } from "lucide-react";
-import { columnLayout } from "@/styles/tableLayout";
+import { columnLayout } from "@/components/table/layout";
 import { getFunctionStyle, getFunctionLabel } from "@/config/ingredientSpec.config";
 import type { ExtractedIngredientSpec } from "@/types/ingredientSpec";
 

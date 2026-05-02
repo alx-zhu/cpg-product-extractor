@@ -1,5 +1,5 @@
 import { type Row } from "@tanstack/react-table";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import { TableCell } from "./TableCell";
 
 interface TableRowProps {

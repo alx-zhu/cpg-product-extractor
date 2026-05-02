@@ -8,13 +8,13 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Upload, Loader2, AlertCircle } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import { useCreateDocument, useUpdateDocumentStatus } from "@/hooks/useDocuments";
 import { useCreateSpecs } from "@/hooks/useSpecs";
 import { useReductoExtraction } from "@/hooks/useReductoExtraction";
-import { savePdfToStorage } from "@/utils/storage";
+import { savePdfToStorage } from "@/api/storage";
 import { SelectedFile } from "./SelectedFile";
-import type { ExtractionStage } from "@/api/reducto.client";
+import type { ExtractionStage } from "@/clients/reducto";
 
 const STAGE_LABELS: Record<ExtractionStage | "preparing" | "saving", string> = {
   preparing: "Preparing document...",

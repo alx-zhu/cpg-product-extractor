@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 import { SPEC_FIELDS } from "@/config/fields";
 import type { ExtractedIngredientSpec, IngredientSpecFieldKey } from "@/types/ingredientSpec";
 

@@ -1,5 +1,4 @@
 import type { ExtractedIngredientSpec } from "@/types/ingredientSpec";
-import { simulateApiCall } from "./client";
 
 const SPECS_STORAGE_KEY = "cpg:specs";
 
@@ -13,14 +12,13 @@ const saveSpecsToStorage = (specs: ExtractedIngredientSpec[]): void => {
 };
 
 export const fetchSpecs = async (): Promise<ExtractedIngredientSpec[]> => {
-  return simulateApiCall(getSpecsFromStorage());
+  return getSpecsFromStorage();
 };
 
 export const fetchSpecsByDocument = async (
   documentId: string,
 ): Promise<ExtractedIngredientSpec[]> => {
-  const specs = getSpecsFromStorage();
-  return simulateApiCall(specs.filter((s) => s.specDocumentId === documentId));
+  return getSpecsFromStorage().filter((s) => s.specDocumentId === documentId);
 };
 
 export const createSpecs = async (
@@ -34,7 +32,7 @@ export const createSpecs = async (
     createdAt: new Date(),
   }));
   saveSpecsToStorage([...created, ...specs]);
-  return simulateApiCall(created);
+  return created;
 };
 
 export const updateSpec = async (
@@ -46,23 +44,20 @@ export const updateSpec = async (
   saveSpecsToStorage(updated);
   const result = updated.find((s) => s.id === specId);
   if (!result) throw new Error(`Spec ${specId} not found`);
-  return simulateApiCall(result);
+  return result;
 };
 
 export const deleteSpec = async (specId: string): Promise<void> => {
   saveSpecsToStorage(getSpecsFromStorage().filter((s) => s.id !== specId));
-  return simulateApiCall(undefined);
 };
 
 export const deleteSpecs = async (specIds: string[]): Promise<void> => {
   const idSet = new Set(specIds);
   saveSpecsToStorage(getSpecsFromStorage().filter((s) => !idSet.has(s.id)));
-  return simulateApiCall(undefined);
 };
 
 export const deleteSpecsByDocument = async (documentId: string): Promise<void> => {
   saveSpecsToStorage(
     getSpecsFromStorage().filter((s) => s.specDocumentId !== documentId),
   );
-  return simulateApiCall(undefined);
 };

@@ -1,6 +1,6 @@
 import type { ExtractedIngredientSpec } from "@/types/ingredientSpec";
 import type { ExportColumn } from "@/utils/export";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 interface ExportPreviewTableProps {
   specs: ExtractedIngredientSpec[];
