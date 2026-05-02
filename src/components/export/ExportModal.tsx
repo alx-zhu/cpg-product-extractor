@@ -102,7 +102,7 @@ export function ExportModal({ open, onOpenChange, specs }: ExportModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-5xl h-[80vh] flex flex-col p-0 gap-0">
+      <DialogContent className="sm:max-w-5xl h-[80vh] flex flex-col p-0 gap-0 overflow-hidden">
         <DialogHeader className="px-6 py-4 border-b border-gray-200 shrink-0">
           <DialogTitle className="text-base font-semibold">Export to CSV</DialogTitle>
         </DialogHeader>
@@ -129,7 +129,7 @@ export function ExportModal({ open, onOpenChange, specs }: ExportModalProps) {
           <ExportPreviewTable specs={filteredSpecs} columns={columns} />
         </div>
 
-        <DialogFooter className="px-6 py-4 border-t border-gray-200 shrink-0 flex items-center justify-between sm:justify-between">
+        <DialogFooter className="mx-0 mb-0 px-6 py-4 border-t border-gray-200 shrink-0 flex items-center justify-between sm:justify-between rounded-b-xl">
           <p className="text-sm text-gray-500">
             {filteredSpecs.length} spec{filteredSpecs.length !== 1 ? "s" : ""},{" "}
             {enabledColumnCount} column{enabledColumnCount !== 1 ? "s" : ""}
