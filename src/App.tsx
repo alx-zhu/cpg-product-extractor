@@ -7,15 +7,24 @@ import { ExportModal } from "@/components/export/ExportModal";
 import { useSpecs } from "@/hooks/useSpecs";
 import { useDocuments } from "@/hooks/useDocuments";
 import { useSidebarFilter } from "@/hooks/useSidebarFilter";
-import { DEFAULT_SORT, createSortComparator } from "@/components/table/shared/sorting";
+import {
+  DEFAULT_SORT,
+  createSortComparator,
+} from "@/components/table/shared/sorting";
 import type { SortConfig } from "@/components/table/shared/sorting";
-import type { ExtractedIngredientSpec, IngredientSpecFieldKey } from "@/types/ingredientSpec";
+import type {
+  ExtractedIngredientSpec,
+  IngredientSpecFieldKey,
+} from "@/types/ingredientSpec";
 import { getPdfUrl } from "@/api/storage";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { SyncBanner } from "@/components/auth/SyncBanner";
+import { UserButton } from "@/components/auth/UserButton";
 
-function App() {
+function AppInner() {
   const { data: rawSpecs } = useSpecs();
   const { data: rawDocuments } = useDocuments();
   // Inline `= []` defaults create a new array reference every render when
@@ -25,7 +34,8 @@ function App() {
   const documents = useMemo(() => rawDocuments ?? [], [rawDocuments]);
 
   const [selectedSpecId, setSelectedSpecId] = useState<string | null>(null);
-  const [selectedFieldKey, setSelectedFieldKey] = useState<IngredientSpecFieldKey>("product_name");
+  const [selectedFieldKey, setSelectedFieldKey] =
+    useState<IngredientSpecFieldKey>("product_name");
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [sortConfig, setSortConfig] = useState<SortConfig>(DEFAULT_SORT);
@@ -63,7 +73,10 @@ function App() {
   }, [filteredSpecs, sortConfig]);
 
   const selectedSpec = useMemo(
-    () => (selectedSpecId ? specs.find((s) => s.id === selectedSpecId) ?? null : null),
+    () =>
+      selectedSpecId
+        ? (specs.find((s) => s.id === selectedSpecId) ?? null)
+        : null,
     [selectedSpecId, specs],
   );
 
@@ -95,14 +108,18 @@ function App() {
     }
   }, []);
 
-  const handleExportSelection = useCallback((_selected: ExtractedIngredientSpec[]) => {
-    setIsExportModalOpen(true);
-    setSelectionKey((k) => k + 1);
-  }, []);
+  const handleExportSelection = useCallback(
+    (_selected: ExtractedIngredientSpec[]) => {
+      setIsExportModalOpen(true);
+      setSelectionKey((k) => k + 1);
+    },
+    [],
+  );
 
   return (
     <TooltipProvider>
       <div className="h-screen flex flex-col bg-gray-50 overflow-hidden">
+        <SyncBanner />
         <header className="h-12 bg-white border-b border-gray-200 flex items-center justify-between px-4 shrink-0">
           <div className="flex items-center gap-2">
             <button
@@ -110,11 +127,23 @@ function App() {
               className="p-1.5 rounded hover:bg-gray-100 text-gray-500 hover:text-gray-700 transition-colors"
               aria-label="Toggle sidebar"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
             </button>
-            <span className="text-sm font-semibold text-gray-900">CPG Spec Extractor</span>
+            <span className="text-sm font-semibold text-gray-900">
+              CPG Spec Extractor
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <Button
@@ -134,6 +163,7 @@ function App() {
               <Upload className="h-3.5 w-3.5" />
               Upload
             </Button>
+            <UserButton />
           </div>
         </header>
 
@@ -180,7 +210,10 @@ function App() {
           pdfUrl={pdfUrl}
         />
 
-        <UploadModal open={isUploadModalOpen} onOpenChange={setIsUploadModalOpen} />
+        <UploadModal
+          open={isUploadModalOpen}
+          onOpenChange={setIsUploadModalOpen}
+        />
 
         <ExportModal
           open={isExportModalOpen}
@@ -189,6 +222,14 @@ function App() {
         />
       </div>
     </TooltipProvider>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppInner />
+    </AuthProvider>
   );
 }
 

@@ -1,18 +1,41 @@
 import Reducto from "reductoai";
 import type { Upload } from "reductoai/resources/shared";
 import type { ReductoFieldValue } from "@/types/reducto";
-import type { ExtractedIngredientSpec, IngredientSpecFieldKey } from "@/types/ingredientSpec";
+import type {
+  ExtractedIngredientSpec,
+  IngredientSpecFieldKey,
+} from "@/types/ingredientSpec";
 import { getExtractionConfig } from "./prompts";
 
 export type ExtractionStage = "uploading" | "extracting";
 
 const SPEC_FIELD_KEYS: IngredientSpecFieldKey[] = [
-  "product_name", "supplier", "ingredient_function", "e_number", "cas_number",
-  "country_of_origin", "spec_date", "typical_use_level", "typical_applications",
-  "description", "features_benefits", "directions_for_use", "moisture_pct",
-  "ph", "viscosity", "protein_pct", "particle_size", "appearance_color",
-  "allergens", "kosher", "halal", "non_gmo", "regulatory_status",
-  "shelf_life_months", "storage_conditions", "packaging_size",
+  "product_name",
+  "supplier",
+  "ingredient_function",
+  "e_number",
+  "cas_number",
+  "country_of_origin",
+  "spec_date",
+  "typical_use_level",
+  "typical_applications",
+  "description",
+  "features_benefits",
+  "directions_for_use",
+  "moisture_pct",
+  "ph",
+  "viscosity",
+  "protein_pct",
+  "particle_size",
+  "appearance_color",
+  "allergens",
+  "kosher",
+  "halal",
+  "non_gmo",
+  "regulatory_status",
+  "shelf_life_months",
+  "storage_conditions",
+  "packaging_size",
 ];
 
 export class ReductoClient {
@@ -40,7 +63,7 @@ export class ReductoClient {
     onProgress?.("uploading");
     if (signal?.aborted) throw new DOMException("Aborted", "AbortError");
 
-    const upload = await this.client.upload({ file }, { signal }) as Upload;
+    const upload = (await this.client.upload({ file }, { signal })) as Upload;
     console.log("[Reducto] File uploaded:", upload);
 
     onProgress?.("extracting");
@@ -75,7 +98,9 @@ export class ReductoClient {
     );
 
     if ("job_id" in result && !("result" in result)) {
-      throw new Error("Received async response from Reducto. Use synchronous extraction.");
+      throw new Error(
+        "Received async response from Reducto. Use synchronous extraction.",
+      );
     }
     if (!("result" in result)) {
       throw new Error("Invalid response format from Reducto API");
